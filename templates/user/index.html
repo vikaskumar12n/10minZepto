@@ -1,0 +1,266 @@
+{% extends 'base.html '%}
+{% load static %}
+{% block content %}
+
+<div class="row slider" xmlns="http://www.w3.org/1999/html">
+
+       
+        <!-- start slider############### -->
+        <div class="col-sm-12 p-0">
+          <div id="carouselExampleInterval" class="carousel slide  carousel-slide" data-bs-ride="carousel" data-bs-interval="2000" >
+            <div class="carousel-indicators">
+              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="{% static 'images/sl3.jpeg'%}" class="d-block w-100 round rounded-start p-0" style="height: 350px;"  alt="...">
+              </div>
+              {% for x in sdata %}
+              <div class="carousel-item">
+                <img src="/{{ x.spic}}" class="d-block w-100 round rounded-start" style="height: 350px;"  alt="...">
+              </div>
+              {% endfor %}
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+       
+        <!-- end slider############# -->
+         <!--#############################################     end slider-->
+    </div>
+   
+    <div class="row category  text-light py-3 p-0" >
+      {% for x in cdata %}
+        <div class="col-lg-2 c0l-md-4 col-sm-12 my-2" style="box-shadow:0px 0px 10px #c0ff77">
+<!--            start category-->
+<a href="/user/product/?cid={{x.id}}"style="text-decoration: none; " > <div class="card p-1 ">
+              <img src="/{{x.cpic }}" class="card-img-top " style="height: 150px;"/>
+                <div class="card-body">
+                  <h5 class="card-title"></h5>
+                   <b class="fs-5 "  class="text-dark" style="text-decoration-line: none;" > <p class="text-center" >{{x.cname}}</b></p>
+                   <br/>
+                   <!-- Date:{{x.cdate}} -->
+                </div>
+            </div>
+          </a>
+             
+           
+
+<!--            end category-->
+        </div>
+        {% endfor %}
+    </div>
+    <!-- ########################today deals  start-->
+
+   
+      <!-- offer product -->
+      <div class="row product bg-light py-3 fs-1 p-1 pb-3 " >
+        <div style="font-family:Impact;text-align:center;"> TODAY<b class="text-mycolor "> DEALS <i class="fa-brands fa-ideal"></i>
+       <hr/> </b></div>
+      {% for x in odata %}
+
+                  <div class="col-lg-2 col-md-3 col-sm-12" >
+                                <div class="card mt-4" >
+                                  <span class="position-absolute top-0 start-100 translate-middle badge rounded-start bg-mycolor " style="font-size: 14px;">
+                                  <i class="fa-solid fa-indian-rupee-sign"></i>   {{x.discount_price}}
+                                    <span class="visually-hidden">unread messages</span>
+                                  </span>
+                                    <img src="/{{x.product_pic}}" class="card-img-top" style="height: 150px;"/>
+                                    <div class="card-body  " style="font-size: 15px;">
+                                        <b>{{x.subcategory_name}}</b><br/>
+                                        {{x.product_quantity}}|| <br/><i class="fa-solid fa-indian-rupee-sign"></i>
+                                        <s>{{x.price}}</s>  {{ x.total_discount}} <b></b>
+ <form method="get" action="/user/indexcart/" >
+                                        <div class="input-group mt-3 ">
+                                           <b class="input-group-text" ><i class="fa-solid fa-minus" onclick="funmy{{x.id}}()"></i></b>
+                                      <input type="text"  name="qt" value="0" readonly id="txtcardy{{x.id}}"  class="form-control fs-5 text-center">
+                                       <input type="hidden" value="{{x.subcategory_name}}" name="pname" />
+                                      <input type="hidden" value="{{x.price}}" name="price" />
+                                      <input type="hidden" value="/{{x.product_pic}}" name="ppic" />
+                                      <b class="input-group-text"><i class="fa-solid fa-plus"  onclick="funpy{{x.id}}()"></i></b>
+                                        </div>
+</div>
+                                        <input type="submit" class="btn bg-mycolor text-light mt-1" value="Add to cart">
+                                    </form>
+                                    </div>
+                                      </div>
+
+
+
+                                <script>
+
+                          var iy{{x.id}}=0;
+                          var txtcy{{x.id}}=document.getElementById("txtcardy{{x.id}}");
+                          function funpy{{x.id}}()
+                          {
+                          iy{{x.id}}++;
+                        txtcy{{x.id}}.value=iy{{x.id}};
+                          }
+                          function funmy{{x.id}}()
+                          {
+                          if(iy{{x.id}}>0)
+                          {
+                          iy{{x.id}}--;
+                          txtcy{{x.id}}.value=iy{{x.id}};
+                          }
+                          }
+
+
+                                </script>
+
+      {% endfor %}
+        <!-- offer product -->
+    </div>
+    <!-- ########################today deals end -->
+    <div class="row product bg-light py-3 fs-1 p-1 pb-1">
+        <div style="font-family:Impact; text-align:center;"> Letest <b class="text-mycolor "> Product<i class="fa-brands fa-product-hunt"></i><hr/></b></div>
+        {% for x in pdata %}
+
+<!-- ########################################################## -->
+            <div class="col-lg-2 col-md-3 col-sm-12" >
+                          <div class="card mt-4">
+                              <img src="/{{x.product_pic}}" class="card-img-top" style="height: 150px;"/>
+                              <div class="card-body fs-5">
+                                  <b>{{x.subcategory_name}}</b>
+                                  {{x.product_quantity}}|| <i class="fa-solid fa-indian-rupee-sign"></i>
+                                  <s>{{x.price}}</s>  <b>{{x.discount_price}}</b>
+                                   <form method="get" action="/user/indexcart/" >
+                                  <div class="input-group">
+                                       <b class="input-group-text" ><i class="fa-solid fa-minus" onclick="funmx{{x.id}}()"></i></b>
+                                      <input type="text"  name="qt" value="0" readonly id="txtcardx{{x.id}}"  class="form-control fs-5 text-center">
+                                       <input type="hidden" value="{{x.subcategory_name}}" name="pname" />
+                                      <input type="hidden" value="{{x.price}}" name="price" />
+                                      <input type="hidden" value="/{{x.product_pic}}" name="ppic" />
+                                      <b class="input-group-text"><i class="fa-solid fa-plus"  onclick="funpx{{x.id}}()"></i></b>
+                                  </div>
+                                  </div>
+                                  <input type="submit" class="btn bg-mycolor text-light mt-1" value="Add to cart">
+                              </form>
+                              </div>
+                              
+              
+                          </div>  
+                          <script>        
+                          var ix{{x.id}}=0;
+                          var txtcx{{x.id}}=document.getElementById("txtcardx{{x.id}}");
+                          function funpx{{x.id}}()
+                          {
+                          ix{{x.id}}++;
+                        txtcx{{x.id}}.value=ix{{x.id}};
+                          }
+                          function funmx{{x.id}}()
+                          {
+                          if(ix{{x.id}}>0)
+                          {
+                          ix{{x.id}}--;
+                          txtcx{{x.id}}.value=ix{{x.id}};
+                          }
+                          }
+                        </script> 
+
+                   {% endfor %}
+<div class="container-fluid p-0">
+<div class="row p-0">
+    <div class="col-sm-12 mt-4 p-0 mb-4">
+
+ <a href="/user/product/">  <div id="carouselExampleIndicators" class="carousel slide  carousel-slide" data-bs-ride="carousel" data-bs-interval="2000">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="{% static 'images/ofi2.png'%}"class=" img-fluid w-100 round rounded-start p-0" style="height: 250px; alt=">
+    </div>
+        {% for x in offpic %}
+    <div class="carousel-item">
+      <img src="/{{x.ofpic }}" class=" img-fluid w-100 round rounded-start p-0" style="height: 250px; " alt="...">
+    </div>
+{% endfor %}
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div></a>
+
+<!--  {% for x in offpic %}-->
+<!--  <div class="col-sm-12 mt-4 p-0 mb-4">-->
+<!--    <img src="/{{x.ofpic }}" class=" img-fluid w-100 round rounded-start p-0" style="height: 250px; " />-->
+<!-- -->
+<!-- {% endfor %}-->
+         </div>
+</div>
+<div class="row" style="margin-bottom: 50px; margin-top: 50px;">
+  <div class="col-sm-1"></div>
+  <div class="col-sm-5" style="box-shadow:0px 0px 10px #c0ff77; border-radius:10px">
+    <a href="/user/product/"><img src="{% static 'images/ofi1.png'%}" style="width:100%; height: 300px;"/></a>
+  </div>
+  <div class="col-sm-5" style="box-shadow:0px 0px 10px #c0ff77 ;border-radius:10px;">
+    <h1 class=" text-center text-mycolor" >50% less in all item</h1>
+    <p  class="text-center fs-5" style="padding-left:40px ; ">New arrivals  new collection  flot<br/>
+      50% off in every item you buy from 10MINZEPTO.<br/>
+    offer valid for 2 days only.<br/>Hurry up.</p>
+   <a href="/user/product/"><input type="submit" value="SHOP NOW" class="fs-5 bg-mycolor" style="margin-left: 220px; border-radius: 10px;"/></a>
+  </div>
+  <div class="col-sm-1"></div>
+
+</div>
+<div class="row" style="margin-bottom: 50px; ">
+  <h1 class="text-center" style="padding: 40px; padding-bottom: 60px;">OUR <b class="text-mycolor">SERVICES <i class="fa-brands fa-servicestack"></i></b></h1>
+  <div class="col-sm-1"></div>
+  <div class="col-sm-3" style="box-shadow: 0px 0px 5px yellowgreen;">
+    <div class="row pt-4" style="border-radius: 10px;">
+      <div class="col-sm-4">
+        <i class="fa-solid fa-truck text-mycolor"style="padding-left: 40px;"></i>
+      </div>
+      <div class="col-sm-8">
+        <h4>FREE SHOPPING</h4>
+        <p style="font-size: 20px;">For All Order Upto </p>
+      </div>
+    </div>
+
+  </div>
+  <div class="col-sm-4" style="box-shadow: 0px 0px 5px yellowgreen;">
+    <div class="row pt-4" style="border-radius: 10px;">
+     
+      <div class="col-sm-4">
+        <i class="fa-regular fa-clock text-mycolor" style="padding-left: 80px;"></i>
+      </div>
+      <div class="col-sm-8">
+        <h4>DELIVERY ON TIME</h4>
+        <p style="font-size: 20px;">Fasted Delivery To Doorstrep </p>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-3" style="box-shadow: 0px 0px 5px yellowgreen;">
+    <div class="row pt-4" style="border-radius: 10px;">
+      <div class="col-sm-4">
+       
+        <i class="fa-solid fa-lock text-mycolor" style="padding-left: 40px; "></i>
+      </div>
+      <div class="col-sm-8">
+        <h4>SECURE PAYMENT</h4>
+        <p style="font-size: 20px;">100% Secure Payment</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-1"></div>
+</div>
+</div>       
+<!--    ##########################################             end product-->
+        </div>
+{% endblock %}

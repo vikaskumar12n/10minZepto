@@ -1,0 +1,66 @@
+{% extends 'base.html '%}
+{% load static %}
+{% block content %}
+<style>
+     .ws
+    {
+        position: relative;
+        width: 700px;
+        height: 300px;
+        box-shadow: 0px 0px 20px yellowgreen;
+        padding: 40px;
+        overflow: hidden;
+        margin-top: 0px;
+        color: white;
+        border-radius: 20px;
+        background: url("{% static 'images/cont.jpeg'%}");
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        opacity: -1s;
+
+       
+    }
+    .ws:hover
+    {
+        animation:animate 1s linear infinite;
+    }
+    @keyframes animate
+    {
+        100%
+        {
+            filter: hue-rotate(360deg);
+        }
+    }
+</style>
+
+<div class="container-fluid" style=" width: 100%;">
+    <h2 class="text-center mb-4" style="text-shadow:0px 0px 20px yellowgreen">Sign<b class="text-mycolor">In<i class="fa-solid fa-sign-hanging "></i>
+   </b> <hr/></h2>
+    <b style="text-align: center; font-size: 30px; padding-left: 700px; color: black; ">Welcome to 10minzepto</b><br/>
+    <b style="text-align: center; font-size: 15px; padding-left: 750px; color: black;">Login to your online shopping</b>
+    <form method="post">
+        {% csrf_token %}
+    <div class="row pb-5 a " style="padding-top: 1px;">
+      <div class="col-sm-4">
+        <img src="{% static 'images/log.webp '%}" class="w-100 ms-5  p-0" style="height: 300px; border-radius: 10px;" alt="..">
+      </div>
+     
+        <div class="col-sm-7 mx-auto p-5  ws " style="border: 2px solid yellowgreen;">
+          
+            <div class="input-group mt-4 mt-3">
+                <I class="input-group-text bg-mycolor "><i class="fa-solid fa-user"></i></I>
+                <input type="EMAIL" class="form-control" placeholder="UserId..." name="email"/>
+            </div>
+            <div class="input-group mt-4">
+                <I class="input-group-text bg-mycolor "><i class="fa-solid fa-lock"></i></I>
+                <input type="password" class="form-control" placeholder="password...." name="password"/>
+            </div>
+            <input type="submit" value="login" class="btn bg-mycolor mt-4"/>
+            <p style="padding-bottom: 30px; text-align: center; color: white; " >Already have an account ?<a href="/user/signup/">Ragister here</a></p>
+            
+            
+        </div>
+    </div>
+</form>
+</div>
+{% endblock%} 

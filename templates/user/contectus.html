@@ -1,0 +1,155 @@
+{% extends 'base.html '%}
+{% load static %}
+{% block content %}
+
+<style>
+    .btn
+    {
+        background: yellowgreen;
+       
+        color: black;
+    }
+    .btn:hover
+    {
+        background-color:rgb(97, 206, 24) ;
+        color: white;
+    }
+    .wc
+    {
+        position: relative;
+        width: 600px;
+        height: 450px;
+        box-shadow: 0px 0px 10px yellowgreen;
+        padding: 40px;
+        overflow: hidden;
+        margin-top: 0px;
+        color: white;
+        border-radius: 30px;
+        /* background: url("{% static 'images/cont.jpeg'%}"); */
+<!--        background: yellowgreen;-->
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        border: 1px solid yellowgreen;
+
+       
+    }
+    .wc:hover
+    {
+        animation:animate 1s linear infinite;
+    }
+    @keyframes animate
+    {
+        100%
+        {
+            filter: hue-rotate(360deg);
+        }
+    }
+
+</style>
+<!-- <div class="text-center fs-2 images" style="padding-top: 20px;">
+    Contect<b class="text-mycolor">Us<i class="fa-solid fa-address-card"></i></b>
+</div> -->
+ <h2 class="text-center pt-4" style="text-shadow:0px 0px 20px yellowgreen;">Contect<b class="text-mycolor " >Us<i class="fa-solid fa-circle-user"> </i>
+ </b><hr/></h2>
+<div class="row " style="height:500px; padding-top: 50px; padding-bottom: 100px; ">
+
+    <div class="col-sm-1"></div>
+    <!-- ########################################################################login form ########### -->
+    <div class="col-sm-6 wc me-4" style=" border-radius: 10px; color: white; ">
+        <form method="POST">
+            {% csrf_token %}
+            <div class="row mt-5 ">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-5 ">
+                    <b>Your name:</b>
+                    <div class="input-group mb-5 " style="height: 10px;">
+                        <I class="input-group-text bg-mycolor " style="height: 40px;"><i class="fa-solid fa-user"  ></i></I>
+                        <input type="text" class="form-control  mb-3" style="width:100px; height: 40px;" placeholder="Enter your name*"
+                           required name="name"/>
+                    </div>
+                    
+                </div>
+                <div class="col-sm-5">
+                    <b>Your Contact:</b>
+                    <div class="input-group mb-5 " style="height: 10px;">
+                        <I class="input-group-text bg-mycolor " style="height: 40px;"><i class="fa-solid fa-phone"></i></I>
+                        <input type="text" class="form-control  mb-3" style="height: 40px;" placeholder="Enter your contact number*" required
+                           name="contact"/>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-10">
+                    <b>Your Email:</b>
+                    <div class="input-group mb-5 " style="height: 10px;">
+                        <I class="input-group-text bg-mycolor " style="height: 40px;"><i class="fa-solid fa-envelope"></i></I>
+                        <input type="email" class="form-control  mb-3"style="height: 40px;"  placeholder="Enter your Email*" required name="email"/>
+                    </div>
+                   
+                </div>
+                <div class="col-sm-1"></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-10">
+                    <b>Your Message:</b>
+                <div class="input-group mb-5 " style="height: 10px;">
+                    <I class="input-group-text bg-mycolor " style="height: 70px;"><i class="fa-solid fa-envelope"></i></I>
+                    <textarea class="form-control d a mb-3" style="resize: none; height: 70px;" placeholder="Type your Message Here*"
+                        required name="message"></textarea>
+                </div>
+                </div>
+
+                <div class="col-sm-1"></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-10">
+                    <input type="submit" value="Send Message" class="btn btn-outline-success   mt-5"/>
+
+                </div>
+                <div class="col-sm-1"></div>
+
+            </div>
+
+        </form>
+
+
+    </div>
+    <!-- ################### end login ######################## -->
+    <div class="col-sm-4" style="border: 1px solid yellowgreen; padding-left: 30px; border-radius: 10px; box-shadow: 0px 0px 10px rgb(101, 204, 17); color: black;">
+    <h4 style="padding-top: 40px; ">CONTECT INFO</h4>
+    <i class="fa-solid fa-location-dot"></i><b>Address</b>
+    <p>Plot No-43, Behind H.P Petrol Pump,</br>
+        Tedhi Pulia Ring Rd, Sector 5,</br>
+        Vikas Nagar, Lucknow, Uttar Pradesh 226022</p>
+
+    <a href="tel:8528118190" style="text-decoration: none; color: black;"><i class="fa-solid fa-phone"></i><b> +918528118190</b></a></br>
+    </br>
+    <a href="mailto:vvikaskumar393gmail.com" style="text-decoration: none; color: black;"><i class="fa-solid fa-envelope"></i><b> vvikaskumar393gmail.com</b></a></br>
+
+</br>
+    </BR>
+    <h6 style="text-align: center; padding-bottom: 20px;">-----CONNECT WITH-------</h6>
+    <b style="padding: 110px; ">
+
+        <a href="https://www.facebook.com/yeshkashyap.yesh.1"><i class="fa-brands fa-square-facebook fs-1" style="color:blue"></i></a>
+        <a href="https://www.youtube.com/@vikasofficialN/about"><i class="fa-brands fa-youtube fs-1" style="color:red"></i></a>
+        <a href="https://www.instagram.com/itz_vikaskumar14n/"><i class="fa-brands fa-instagram fs-1" style="color:rgb(235, 15, 198)"></i></a>
+        <a href="https://www.telegram.com/vikas kumar"><i class="fa-brands fa-telegram fs-1" style="color:rgb(111, 208, 211)"></i></a>
+    </b>
+</div>
+<div class="col-sm-1"></div>
+</div>
+<div class="row map p-0">
+    <div class="col-sm-12 pt-5 pb-5 ">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d42959.159748943566!2d83.89401841302531!3d25.726212934904776!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399212a65c67ad3b%3A0xe0768bb1b5a61594!2z4KSq4KSf4KS-4KSwLCDgpIngpKTgpY3gpKTgpLAg4KSq4KWN4KSw4KSm4KWH4KS2IDIzMzIyOA!5e0!3m2!1shi!2sin!4v1662269850837!5m2!1shi!2sin" 
+        width="100%" height="300px" style="border:0;" allowfullscreen="" 
+        loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+    </div>
+</div>
+
+{% endblock%}

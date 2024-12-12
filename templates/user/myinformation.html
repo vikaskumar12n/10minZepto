@@ -1,0 +1,70 @@
+{% extends 'base.html '%}
+{% load static %}
+{% block content %}
+<style>
+    .fa-solid
+    {
+        border:1px solid var(--txtcolor)!important;
+    }
+
+    .form-control
+    {
+        height: 50px;
+        margin-bottom: 10%;
+    }
+
+
+</style>
+<script>
+function demo()
+{
+    document.getElementById('upform').style.display="block"
+}
+
+</script>
+<h2 class="text-center mt-3">My <b class="text-mycolor">Information</b> <i class="fa-regular fa-user"></i></h2>
+
+{% if not request.session.user %}
+<script>
+ alert('You Have To Login First');
+location.href="/user/signin/";</script>
+
+
+{% endif %}
+<div class="row mt-4 ">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8 mb-5 p-3 max-auto" style="border:2px solid yellowgreen; box-shadow: 0px 0px 10px yellowgreen; border-radius: 20px;;">
+
+        <div class="card mb-3" >
+            <div class="row g-0">
+              <div class="col-md-5">
+                <img src="{% static 'images/myy.jpg'%}" class="img-fluid rounded-start" alt="..." style="height:100%; width:400px; border-radius:50%;">
+              </div>
+              <div class="col-md-6">
+                <div class="card-body p-5" >
+
+                    <b class="card-text " class=""><i class="fa-solid fa-user btn bg-mycolor "  >   </i>    Vikas Bind<br/>
+                        <br/>
+
+
+                  <b class="card-text"><i class="fa-solid fa-envelope btn bg-mycolor">    </i> vvikaskumar393@gmail.co<br/>
+  <br/>
+                  <b class="card-text"><i class="fa-solid fa-phone btn bg-mycolor">    </i>   +918528118190<br/>
+  <br/>
+                  <b class="card-text"><i class="fa-solid fa-lock btn bg-mycolor" >    </i>***********<br/>
+
+  <br/>
+                  <b class="card-text"><i class="fa-solid fa-user btn bg-mycolor"  >   </i>    vill+patar dist. ghazipur state.uttar pradesh</b><br/>
+
+                  <br/>
+
+                  <a href="#" onclick="demo()" class=" btn btn-sm bg-mycolor"><i class="fa-solid fa-pen-to-square"></i>Edit Profile</a>
+                </b>
+                </div>
+              </div>
+            </div>
+          </div>
+
+    </div>
+</div>
+{% endblock %}

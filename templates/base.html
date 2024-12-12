@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <style>
+        :root
+    {
+        --mycolor:linear-gradient(45deg,#CCFF90,#B2FF59);
+    }
+    .bg-mycolor
+    {
+        background: var(--mycolor) !important;
+    }
+       .text-mycolor
+       {
+color:#B2FF59 !important;
+       }
+        .t1
+        {
+font-size:15px;
+        }
+
+        .logo1
+        {
+        border:1px solid black;
+        padding:.5%;
+        color:white;
+
+        }
+
+         .logo1:hover
+         {
+         transform:rotate(360deg);
+         transition:all 2s;
+         background:white;
+         color:#64DD17;
+         }
+         .gmail
+         {
+         text-decoration:none;
+         color:white;
+         }
+         .gmail:hover
+         {
+         color:white;
+         }
+         #menu
+         {
+         background:transparent !important;
+         }
+         #menu ul li a
+         {
+         color:white;
+         }
+.bfooter
+{
+min-height:30px;
+}
+.ufooter
+{
+min-height:300px;
+}
+.logo2
+{
+  
+        padding:.5%;
+        color:white;
+        transform:rotate(360deg);
+        transform:alternate;
+}
+
+.image
+    {
+        background-image: url("{% static 'images/login page2.jpeg' %}");
+        background-repeat: no-repeat;
+        background-size:  100%;
+
+        
+        
+    }
+    .images
+    {
+        background-image: url("{% static 'images/cont.jpeg' %}");
+        
+        
+    }
+    .imag1
+    {
+        background-image: url("{% static 'images/aboutus.jpeg'%}");
+        width: 100%;
+        height:400px;
+       
+    }
+<!--    .footer{-->
+<!--&lt;!&ndash;      background: url("{% static 'images/aboutus17.jpeg'%}");&ndash;&gt;-->
+<!--      background-repeat: no-repeat;-->
+
+    }
+    .btn1
+  {
+    background: #64DD17;
+    color:white;
+    border-radius: 5px;
+                transition: all 5s;
+               
+                
+
+  }
+  .btn1:hover
+  {
+    background: #ffffff;
+    color:white;
+    border-radius: 5px;
+                transition: all 1s;
+                box-shadow:0px 0px 10px yellowgreen;
+
+
+  }
+    </style>
+    <meta charset="UTF-8">
+    <title> </title>
+<link href="{% static 'css/css.css'%}" rel="stylesheet"/>
+    <link href="{% static 'css/bootstrap.css'%}" rel="stylesheet"/>
+    <link href="{% static 'css/all.css'%}" rel="stylesheet"/>
+    
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="row t1 bg-mycolor text-center py-1 text-mycolor">
+            <div class=" col-lg-3 col-md-6 col-sm-12">
+                <i class="fa-solid fa-phone logo2 text-black"></i><a href="tel:8528118190"class="gmail text-black"><b>+918528118190</b></a>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12">
+            <i class="fa-solid fa-envelope logo2 text-black"></i><a href="mailto:vvikaskumar393@gmail.com" class="gmail text-black"><b>vvikaskumar393gmail.com</b></a>
+
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 text-light">
+               <b class="text-black"> An ISO certifield company</b>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 ">
+               <a href="https://www.instagram.com" ><i class="fa-brands fa-instagram logo1  " style="color:pink;"></i></a>
+                <a href="https://www.facebook.com"><i class="fa-brands fa-facebook logo1" style="color:blue;"></i></a>
+                <a href="https://www.youtube.com"><i class="fa-brands fa-youtube logo1" style="color:red;"></i></a>
+              <a href="https://whatsapp.com"><i class="fa-brands fa-whatsapp logo1 " style="color:green;"></i></a>
+        </div>
+</div>
+        <div class="row t2 my-3">
+            <div class="col-sm-12 mx-auto">
+          <div class="row">
+              <div class=" col-sm-3 fs-1" style="font-family:Impact;">
+                  10min<b class="text-mycolor">zepto</b>
+              <i class="fa-solid fa-laptop-file " style="color:#64DD17;" ></i></div>
+              <!-- 3######################################### search box -->
+              <div class=" col-sm-5 ">
+                <nav class="navbar bg-body-tertiary w-100">
+                  <div class="container-fluid ">
+                    <form class="d-flex w-100" style="height:45px" role="search">
+                      <input class="form-control me-2 " type="search" placeholder="Search" aria-label="Search" style="border: 1px solid yellowgreen;">
+                      <button class="btn  bg-mycolor"style="height:45px"  type="submit">Search</button>
+                    </form>
+                  </div>
+                </nav>
+              </div>
+              <div class=" col-sm-2 text-end fs-1 pb-2 mt-1">
+                  {% if request.session.user %}
+                  <a href="/user/cartitems/" class="btn btn-sm bg-mycolor color:white;" style="height:40px;">Cart
+                  <i class="fa-solid fa-cart-shopping"></i>
+                     <b class="badge text-bg-light">{{ request.session.cartitems }}</b>
+                  </a>
+                   <a href="/user/orderlist/" class="btn bg-mycolor color:white;">My Order
+                  <i class="fa-solid fa-truck-fast"></i>
+
+                  </a>
+{% else %}
+                   <a href="/user/cartitems/" class="btn bg-mycolor color:white;" style="height:45px">Cart
+                  <i class="fa-solid fa-cart-shopping"></i>
+                     <b class="badge text-bg-light">0</b>
+                  </a>
+                  {% endif %}
+              </div>
+              <div class="col-sm-2 pb-1 mt-1 text-end " style="height:50px;">
+                {% if request.session.user %}
+
+
+                  <a href="/user/myprofile/" class=" p-2  pt-1 btn bg-mycolor " style="text-decoration:none;margin-top:17px; "><b>{{request.session.username}}</b> <img src="/{{ request.session.userpic}}" style="max-height:20px;  border-radius:50%;"  class="img-fuild pb-1 "/></a>
+
+
+                {% else %}
+
+
+                 <a href="#" class="nev-link disabled   btn bg-mycolor h-60 " style="text-decoration:none;margin-top:17px; "><b class="fs-6 "> User</b> <img src="{% static 'images/user.jpeg'%}" style="max-height:20px; border-radius:50%;" class="img-fuild "/></a>
+
+                  {% endif%}
+              </div>
+
+          </div>
+        </div>
+            </div>
+        <div class=" row t3 bg-mycolor" >
+          <div class="col-sm-2" >
+
+   <img src="{% static 'images/lo.jpeg'%}"  style="height: 50px; width: 200px; margin-top: 7px; border-radius: 10px;"/>
+          </div>
+            <div class="col-sm-10 mx-auto" >
+<!--                start menu-->
+                <nav class="navbar navbar-expand-lg bg-body-tertiary " id="menu">
+  <div class="container-fluid">
+    <button class="navbar-toggler bg-light " style="margin-bottom:10px" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse"  id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto  mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active btn1 btn-success text-dark  me-2" style="margin-left: 30px;" aria-current="page" href="/user/index"> <i class="fa-solid fa-house"></i> Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link  btn1 btn-success text-dark me-2"  style="margin-left: 10px;"  href="/user/aboutus"><i class="fa-solid fa-address-card"></i> About Us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link  btn1 btn-success text-dark me-2"  style="margin-left: 10px;" href="/user/product"> <i class="fa-brands fa-product-hunt"></i>Product</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active  btn1 btn-success text-dark me-2"  style="margin-left: 10px;" aria-current="page" href="/user/contectus"><i class="fa-solid fa-circle-user"> </i>Customer Support</a>
+        </li>
+        
+           <li class="nav-item">
+          <a class="nav-link  btn1 btn-success text-dark me-2"  style="margin-left: 10px;" href="/user/myprofile"><i class="fa-solid fa-address-card"></i> Myprofile</a>
+        </li>
+
+       <li class="nav-item">
+          <a class="nav-link  btn1 btn-success text-dark me-2"  style="margin-left: 10px;" href="/user/signup"><i class="fa-solid fa-address-card"></i> signup</a>
+
+        </li>
+        {% if request.session.user %}
+        <li class="nav-item">
+          <a class="nav-link  btn1 btn-success text-dark me-2"  style="margin-left: 10px;" href="/user/signout"><i class="fa-solid fa-address-card"></i> signOut</a>
+        </li>
+        {% else %}
+          <li class="nav-item">
+          <a class="nav-link  btn1 btn-success text-dark me-2"  style="margin-left: 10px;" href="/user/signin"><i class="fa-solid fa-address-card"></i> signin</a>
+        </li>
+
+        {% endif%}
+
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+                </div>
+<!--                end menu-->
+        </div>
+
+{% block content %}
+{% endblock %}
+    <div class="row ufooter  " style="background:white;  box-shadow:0px 0px 5px yellowgreen">
+      <div class="col-sm-4 text-light   ">
+        <b style="text-align: center; font-size: 30px; color: #b2ff59;"> Servise Menu  <i class="fa-brands fa-servicestack"></i></b><br/>
+        <br/>
+        <a href="/user/product/" style="text-decoration: none; color: black;">vagetable & Fruits</a><br/>
+        <a href="/user/product/" style="text-decoration: none; color: black;">Cold Drinks & Juices</a><br/>
+        <a href="/user/product/" style="text-decoration: none; color:black;">Bakery & Biscuits</a><br/>
+        <a href="/user/product/" style="text-decoration: none; color: black;">Dry Fruits, Masala & Oil</a><br/>
+        <a href="/user/product/" style="text-decoration: none; color: black;">Paan Corner</a><br/>
+        <a href="/user/product/" style="text-decoration: none; color: black;">Pharma & Wellness</a><br/>
+        <a href="/user/product/" style="text-decoration: none; color: black;">Dairy & Breakfast</a><br/>
+        <a href="/user/product/" style="text-decoration: none; color: black;">Atta, Rice & Dal</a><br/>
+
+      </div>
+      <div class="col-sm-4">
+        <b style="text-align: center; font-size: 30px; color: #b2ff59;">We're Sociable <i class="fa-solid fa-share-from-square"></i></b><br/>
+        <br/>
+        <a href="https://www.instagram.com/itz_vikaskumar14n/" ><i class="fa-brands fa-instagram logo1 " style="color: rgb(223, 49, 116); font-size: 40px;"></i></a>
+        <a href="https://www.facebook.com/yeshkashyap.yesh.1"><i class="fa-brands fa-facebook logo1" style="color: rgb(121, 112, 245); font-size: 40px;"></i></a>
+        <a href="https://www.youtube.com/@vikasofficialN/about"><i class="fa-brands fa-youtube logo1" style="color: rgb(207, 35, 44); font-size: 40px;"></i></a>
+      <a href="https://whatsapp.com"><i class="fa-brands fa-whatsapp logo1" style="color: rgb(91, 250, 99); font-size: 40px;"></i></a>
+      <a href="https://twitter.com"><i class="fa-brands fa-twitter logo1" style="color: rgb(91, 205, 250); font-size: 40px;"></i></a>
+      </div>
+      <div class="col-sm-4">
+      <b style="text-align: center; font-size: 30px; color: #b2ff59;"> Get In Touch <i class="fa-solid fa-couch"></i></b><br/>
+      <br/>
+      <a href="#" style="text-decoration: none; color:black;font-size: 20px;"><i class="fa-solid fa-envelope"></i>  10minzepto shopping site</a><br/>
+      <a href="#" style="text-decoration: none; color:black; font-size: 20px;"><i class="fa-solid fa-network"></i>  www.10minzepto.nic.in</a><br/>
+      <a href="mailto:vvikaskumar393@gmail.com" style="text-decoration: none; color: black;font-size: 20px;"> <i class="fa-solid fa-envelope"></i>  vvikaskumar393@gmail.com</a><br/>
+      <a href="tel:8528118190" style="text-decoration: none; color:black; font-size: 20px;"> <i class="fa-solid fa-phone"></i>  +918528118190</a><br/>
+
+    </div>
+    </div>
+    <div class="row bfooter bg-dark h-25">
+      <div class="col-sm-3">
+      <b style="color: white;"> Developed by:</b> <a href="/user/myinformation/" style="text-decoration: none; color: white;">Vikas Bind </a>
+      </div>
+      <div class="col-sm-4"></div>
+      <div class="col-sm-5">
+        <b style="color: white;"> Copyright to:</b><a href="https://www.techpiltlko.in" style="text-decoration: none; color: white;">Techpile technology pvt. ltd. </a>
+      </div>
+    </div>
+</div>
+<!--end container-->
+ <script>
+  AOS.init(
+      {
+      offset:300,
+      duration:1500,
+   }
+   );
+  </script>
+<script src="{% static 'css/css.css'%}"></script>
+<script src="{% static 'js/bootstrap.bundle.js' %}"></script>
+</body>
+</html> 

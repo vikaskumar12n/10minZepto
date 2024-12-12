@@ -1,0 +1,157 @@
+{% extends 'base.html '%}
+{% load static %}
+{% block content %}
+<style>
+    .fa-solid
+    {
+        border:1px solid var(--txtcolor)!important;
+    }
+
+    .form-control
+    {
+        height: 50px;
+        margin-bottom: 2%;
+    }
+    .i
+    {
+        background: url("{% static 'images/cont.jpeg'%}");
+        background-repeat: no-repeat;
+        background-size:  100% 100%;
+      
+    }
+    .w
+    {
+        position: relative;
+        width: 600px;
+        height: 650px;
+        box-shadow: 0px 0px 10px yellowgreen;
+        padding: 40px;
+        overflow: hidden;
+        margin-top: 0px;
+        color: white;
+        border-radius: 20px;
+        background: url("{% static 'images/cont.jpeg'%}");
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        opacity: -1s;
+
+       
+    }
+    .w:hover
+    {
+        animation:animate 1s linear infinite;
+    }
+    @keyframes animate
+    {
+        100%
+        {
+            filter: hue-rotate(360deg);
+        }
+    }
+   #upform
+   {
+    display: none;
+   }
+  
+
+</style>
+<script>
+function demo()
+{
+    document.getElementById('upform').style.display="block"
+}
+
+</script>
+<h2 class="text-center mt-3">My <b class="text-mycolor">Profile</b> <i class="fa-regular fa-user"></i></h2>
+
+{% if not request.session.user %}
+<script>
+ alert('You Have To Login First');
+location.href="/user/signin/";</script>
+   
+
+{% endif %}
+<div class="row mt-4 ">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8 mb-3 p-3 max-auto" style="border:2px solid yellowgreen; box-shadow: 0px 0px 10px yellowgreen; border-radius: 20px;;">
+        {% for i in rdata %}
+        <div class="card mb-3" >
+            <div class="row g-0">
+              <div class="col-md-5">
+                <img src="/{{i.profile}}" class="img-fluid rounded-start" alt="..." style="height:100%; width:400px;">
+              </div>
+              <div class="col-md-6">
+                <div class="card-body p-5">
+                        <b>Name</b><br/>
+                    <b class="card-text"><i class="fa-solid fa-user btn bg-mycolor"  ></i>&nbsp; &nbsp;    {{i.name}}<br/>
+
+                         <b>Email</b><br/>
+                  <b class="card-text"><i class="fa-solid fa-envelope btn bg-mycolor"></i>&nbsp; &nbsp;     {{i.email}}</b><br/>
+
+                         <b>Mobile</b><br/>
+                  <b class="card-text"><i class="fa-solid fa-phone btn bg-mycolor"></i> &nbsp; &nbsp;     {{i.mobile}}</b><br/>
+
+                         <b>Password</b><br/>
+                        <b class="card-text"><i class="fa-solid fa-lock btn bg-mycolor"  ></i> &nbsp; &nbsp;      {{i.password}}</b><br/>
+
+                         <b>Address</b><br/>
+                  <b class="card-text"><i class="fa-solid fa-user btn bg-mycolor"  ></i> &nbsp; &nbsp;      {{i.address}}</b><br/>
+
+                  <br/>
+             
+                  <a href="#" onclick="demo()" class=" btn btn-sm bg-mycolor"><i class="fa-solid fa-pen-to-square"></i>Edit Profile</a>
+                </b>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+    </div>
+</div>
+
+<div class="row  " id="upform">
+    <h2 class="text-center  mt-3 ">Edit Your<b class="text-mycolor">Profile </b>  <i class="fa-regular fa-user"></i></h2>
+    <hr/>
+    <div class="col-sm-3"></div>
+    <div class="col-sm-6  w  mb-5 mt-3 " style="border-radius: 10px; margin-left:400px; background:#e3e3e3;" >
+
+            <form method="post" style="color:black;" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                   <b>Name</b>
+                <div class="input-group mb-5 " style="height: 10px;"><I class="input-group-text bg-mycolor " style="height: 40px;"><i class="fa-solid fa-user"  ></i></I>
+                    <input type="text" name="name" placeholder="Name...." class="form-control " required style="height: 40px;"/>
+                </div>
+
+                <b>Mobile</b>
+                <div class="input-group mb-5 " style="height: 10px;">
+                    <I class="input-group-text bg-mycolor " style="height: 40px;"><i class="fa-solid fa-phone"></i></I>
+                    <input type="number" name="mobile" placeholder="Mobile...." class="form-control" required style="height: 40px;"/>
+                </div>
+                <b>Email</b>
+                <div class="input-group mb-5 " style="height: 10px;">
+                    <I class="input-group-text bg-mycolor " style="height: 40px;"><i class="fa-solid fa-envelope"></i></I>
+                    <input type="email" name="email" placeholder="Enter your email.." class="form-control" required style="height: 40px;"/>
+                </div>
+                <b>Password</b>
+                <div class="input-group mb-5 " style="height: 10px;">
+                    <I class="input-group-text bg-mycolor " style="height: 40px;"><i class="fa-solid fa-envelope"></i></I>
+                    <input type="password" name="password" placeholder="Enter your password.." class="form-control" required style="height: 40px;"/>
+                </div>
+                <b>Profile Picture</b>
+                <div class="input-group mb-5 " style="height: 10px;">
+                    <I class="input-group-text bg-mycolor " style="height: 40px;"><i class="fa-solid fa-image"></i></I>
+                    <input type="file" name="fu" class="form-control" required style="height: 40px;"/>
+                </div>
+
+                <b>Address</b>
+                <div class="input-group mb-5 " style="height: 50px;">
+                    <I class="input-group-text bg-mycolor " style="height: 70px;"><i class="fa-solid fa-address-book"></i></I>
+                    <textarea class="form-control" name="address" placeholder="Address..."  style="height: 70px;"></textarea>
+                </div>
+                <input type="submit" value="Ragister Now" class="btn bg-mycolor  w-25"/><br/>
+            </form>
+        </div>
+
+</div>
+{% endblock %}

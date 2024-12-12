@@ -1,0 +1,89 @@
+{% extends 'base.html '%}
+{% load static %}
+{% block content %}
+<style xmlns="http://www.w3.org/1999/html">
+    .co
+    {
+        background: whitesmoke;
+        color: rgb(17, 19, 15);
+        border-radius: 10px;
+    }
+    .co:hover
+    {
+        background:yellowgreen;
+        color: white;
+        border-radius: 10px;
+    }
+</style>
+ <div class="row">
+    <div class="col-sm-2">
+        <ul class="list-group">
+            <a href="/user/product/" style="text-decoration: none;"><li class="list-group-item bg-mycolor mt-2" style="text-align: center; ">Subcategory</li></a>
+            {% for i in subcate %}
+            <a href="/user/product?sid={{i.id}}" style="text-decoration: none;"><li class="list-group-item co" style="text-align: center;" >{{i.subcategory_name}}</li></a>
+
+            {% endfor %}
+          </ul>
+    </div>
+    <div class="col-sm-10">
+        <div class="row">
+            {% for x in pdata %}
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                          <div class="card mt-4" >
+                              <img src="/{{x.product_pic}}" class="card-img-top" style="height: 150px;"/>
+                              <div class="card-body">
+                                  <b>{{x.subcategory_name}}</b><br/>
+                                  {{x.product_quantity}}|| <i class="fa-solid fa-indian-rupee-sign"></i>
+                                  <s>{{x.price}}</s>  <b>{{x.discount_price}}</b><br/>
+
+                                  <form method="get" action="/user/mycart/" ><br/>
+                                  <div class="input-group">
+                                       <b class="input-group-text" ><i class="fa-solid fa-minus"  onclick="funm{{x.id}}()"></i></b>
+                                      <input type="hidden" value="{{x.subcategory_name}}" name="pname" />
+                                      <input type="hidden" value="{{x.price}}" name="price" />
+                                      <input type="hidden" value="/{{x.product_pic}}" name="ppic" />
+                                       <input type="hidden" value=" {{x.product_quantity}}" name="pw" /><br/>
+                                      <input type="text" name="qt"  value="0" readonly id="txtcard{{x.id}}" readonly class="form-control fs-5 text-center"><br/>
+                                      <b class="input-group-text"><i class="fa-solid fa-plus "   onclick="funp{{x.id}}()"></i></b>
+                                      <br/>
+                                  </div>
+</div>
+                                   <input type="submit" class="btn bg-mycolor text-light  " value="Add to cart"><br/>
+ </div>
+                                  </form>
+
+
+
+
+
+
+
+
+
+                          </div> 
+<script>        
+                          var i{{x.id}}=0;
+                          var txtc{{x.id}}=document.getElementById("txtcard{{x.id}}");
+                          function funp{{x.id}}()
+                          {
+                          i{{x.id}}++;
+                        txtc{{x.id}}.value=i{{x.id}};
+                          }
+                          function funm{{x.id}}()
+                          {
+                          if(i{{x.id}}>0)
+                          {
+                          i{{x.id}}--;
+                          txtc{{x.id}}.value=i{{x.id}};
+                          }
+                          }
+                        </script> 
+{% endfor %}
+        </div>
+    </div>
+</div> 
+
+
+  
+
+{% endblock%}
